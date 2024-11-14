@@ -19,8 +19,20 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label for="">Name</label>
+                            <label for="" class="form-label"><b>Name</b></label>
                             <input type="text" name="name" class="form-control form-control-lg" placeholder="Enter name of product">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label"><b>Sku</b></label>
+                            <input type="text" name="sku" class="form-control form-control-lg" placeholder="Enter sku">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label"><b>Price</b></label>
+                            <input type="text" name="price" class="form-control form-control-lg" placeholder="Enter price">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label"><b>Description</b></label>
+                            <textarea class="form-control" name="description" id="" cols="30" rows="5" placeholder="Enter Description of product"></textarea>
                         </div>
                     </div>
                 </div>
