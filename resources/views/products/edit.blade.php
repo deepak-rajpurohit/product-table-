@@ -20,42 +20,49 @@
             <div class="col-md-7">
                 <div class="card border-1 shadow-lg my-4">
                     <div class="card-header bg-secondary text-white text-center">
-                        <h1>Create Product</h1>
+                        <h1>Edit Product</h1>
                     </div>
-                    <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('products.update', $product->id) }}" method="post" enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="" class="form-label"><b>Name</b></label>
-                            <input type="text" value="{{ old('name') }}" name="name" class="@error('name') is-invalid @enderror form-control form-control-lg" placeholder="Enter name of product">
+                            <input type="text" value="{{ old('name', $product->name) }}" name="name" class="@error('name') is-invalid @enderror form-control form-control-lg" placeholder="Enter name of product">
                             @error('name')
                                 <p class="invalid-feedback">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label"><b>Sku</b></label>
-                            <input type="text" value="{{ old('sku') }}" name="sku" class="@error('sku') is-invalid @enderror form-control form-control-lg" placeholder="Enter sku">
+                            <input type="text" value="{{ old('sku', $product->sku) }}" name="sku" class="@error('sku') is-invalid @enderror form-control form-control-lg" placeholder="Enter sku">
                             @error('sku')
                                 <p class="invalid-feedback">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label"><b>Price</b></label>
-                            <input type="text" value="{{ old('price') }}" name="price" class="@error('price') is-invalid @enderror form-control form-control-lg" placeholder="Enter price">
+                            <input type="text" value="{{ old('price',$product->price) }}" name="price" class="@error('price') is-invalid @enderror form-control form-control-lg" placeholder="Enter price">
                             @error('price')
                                 <p class="invalid-feedback">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label"><b>Description</b></label>
-                            <textarea class="form-control" name="description" id="" cols="30" rows="5" placeholder="Enter Description of product">{{ old('description') }}</textarea>
+                            <textarea class="form-control" name="description" id="" cols="30" rows="5" placeholder="Enter Description of product">{{ old('description',$product->description) }}</textarea>
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label"><b>Image</b></label>
                             <input type="file" name="image" value="{{ old('image') }}" class="form-control form-control-lg" placeholder="">
+                            @if (filled($product->image))
+                                            
+                            <img class="w-50 my-3" src="{{ Storage::disk("public")->url("products/$product->image") }}" class="img-fluid" alt="">
+
+                        
+                    @endif
                         </div>
                         <div class="d-grid">
-                            <button class="btn btn-lg btn-primary">Submit</button>
+                            <button class="btn btn-lg btn-success">update</button>
                         </div>
                     </div>
                 </form>
